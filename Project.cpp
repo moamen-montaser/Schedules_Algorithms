@@ -236,7 +236,78 @@ int main ()
 	//SJF Non-Preemptive
 	else if (x == 3)
 	{
-		
+        int n, temp, tt = 0, min, d, i, j;
+        float avg_tat = 0, avg_wt = 0, t_tat = 0, t_wt = 0;
+        cout << "Enter number of processes : ";
+        cin >> n;
+        int * ps, * at, * bt, * c, * tat, * wt;
+        ps = new int[n];
+        at = new int[n];
+        bt = new int[n];
+        c = new int[n];
+        tat = new int[n];
+        wt = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            cout << "Enter arrival time of process " << i + 1 << ":";
+            cin >> at[i];
+        }
+
+        for (int i = 0; i < n; i++) {
+            cout << "Enter burst time of process " << i + 1 << ":";
+            cin >> bt[i];
+        }
+
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if (bt[i] > bt[j]) {
+                    temp = ps[i];
+                    ps[i] = ps[j];
+                    ps[j] = temp;
+
+                    temp = at[i];
+                    at[i] = at[j];
+                    at[j] = temp;
+
+                    temp = bt[i];
+                    bt[i] = bt[j];
+                    bt[j] = temp;
+                }
+            }
+        }
+
+        min = at[0];
+        for (int i = 0; i < n; i++) {
+            if (min > at[i]) {
+                min = at[i];
+                d = i;
+            }
+        }
+
+        tt = min;
+        c[d] = tt + bt[d];
+        tt = c[d];
+
+        for (int i = 0; i < n; i++) {
+            if (at[i] != min) {
+                c[i] = bt[i] + tt;
+                tt = c[i];
+            }
+        }
+
+        cout << "Process\t\t Arrival Time\t\t Burst Time\t\t Turnaround Time\t\t Waiting Time  \n";
+        for (int i = 0; i < n; i++) {
+            tat[i] = c[i] - at[i];
+            t_tat = t_tat + tat[i];
+            wt[i] = tat[i] - bt[i];
+            t_wt += wt[i];
+            cout << "P[" << ps[i] << "]\t\t\t" << at[i] << "\t\t\t" << bt[i] << "\t\t\t" << tat[i] << "\t\t\t" << wt[i] << endl;
+        }
+
+        avg_tat = t_tat / n;
+        avg_wt = t_wt / n;
+        cout << "Average Turnaround Time: " << avg_tat << endl;
+        cout << "Average Waiting Time: " << avg_wt << endl;		
 	}
 	
 	//Priority Preemptive
