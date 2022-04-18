@@ -17,7 +17,7 @@ int main ()
 	struct process p[100];
 	
 	// TO select type of scheduler
-	cout << "press 1 for FCFS \n2 for SJF preemptive\n3 for SJF non-preemptive \n4 for Priority preemptive \n5 for Priority non_preemptive \n6 for RR:  \n";
+	cout << "press 1 for FCFS \n2 for SJF preemptive\n3 for SJF non-preemptive \n4 for Priority preemptive \n5 for Priority non_preemptive \n6 for Round Robin:  \n";
 	int x;
 	cin >> x;
 	
@@ -30,6 +30,45 @@ int main ()
 		
 		
 	}
+	
+	// SJF Preemptive
+	else if (x == 2)
+	{
+		
+		
+		
+	}
+	
+	
+	//SJF Non-Preemptive
+	else if (x == 3)
+	{
+		
+	}
+	
+	//Priority Preemptive
+	else if (x == 4)
+	{
+		
+		
+	}
+	
+	
+	//Priority Non-Preemptive
+	else if (x == 5)
+	{
+		
+		
+		
+	}
+	
+	//Round Robin
+	
+	else if (x == 6)
+	{
+		
+		
+	}
+	
 	return 0 ;
-
 }
