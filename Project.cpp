@@ -69,6 +69,9 @@ int main ()
 		
 		
 	}
-	
+	else
+	{
+		cout <<"Invalid input" ;
+	}
 	return 0 ;
 }
