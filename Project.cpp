@@ -26,6 +26,73 @@ int main ()
 	
 	if (x == 1)
 	{
+		int num1;
+		float avrw1 = 0, sum1 = 0, avrt1 = 0;
+		struct process p1[100];
+		struct process temp;
+		cout << "Enter the number of processes: ";
+		cin >> num1;
+		for (int i = 0; i < num1; i++)
+		{
+			cout << "Enter arrival and burst time of process " << i + 1 << " :";
+			cin >> p1[i].arrival_time;
+			cin >> p1[i].burst_time;
+			p1[i].pid = i + 1;
+		}
+		for (int i = 0; i < num1; i++)
+		{
+			for (int j = 0; j < num1 - i - 1; j++)
+			{
+				if (p1[j].arrival_time > p1[j + 1].arrival_time)
+				{
+					temp = p1[j];
+					p1[j] = p1[j + 1];
+					p1[j + 1] = temp;
+				}
+			}
+		}
+		for (int i = 0; i < num1; i++)
+		{
+			sum1 = sum1 + p1[i].burst_time;
+			p1[i].turnaround_time = sum1;
+			p1[i].waiting_time = p1[i].turnaround_time - p1[i].burst_time;
+			avrw1 = avrw1 + p1[i].waiting_time;
+			avrt1 = avrt1 + p1[i].turnaround_time;
+		}
+		cout << "pid" << "               ";
+		for (int i = 0; i < num1; i++)
+		{
+			cout << p1[i].pid << "       ";
+		}
+		cout << endl << endl;
+		cout << "arrival_time" << "      ";
+		for (int i = 0; i < num1; i++)
+		{
+			cout << p1[i].arrival_time << "       ";
+		}
+		cout << endl << endl;
+		cout << "burst_time" << "        ";
+		for (int i = 0; i < num1; i++)
+		{
+			cout << p1[i].burst_time << "       ";
+		}
+		cout << endl << endl;
+		cout << "turnaround_time" << "   ";
+		for (int i = 0; i < num1; i++)
+		{
+			cout << p1[i].turnaround_time << "       ";
+		}
+		cout << endl << endl;
+		cout << "waiting_time" << "      ";
+		for (int i = 0; i < num1; i++)
+		{
+			cout << p1[i].waiting_time << "       ";
+		}
+		cout << endl << endl;
+		avrw1 = avrw1 / num1;
+		avrt1 = avrt1 / num1;
+		cout << "Average waiting time = " << avrw1 << endl;
+		cout << "Average turnarround time = " << avrt1 << endl;
 		
 		
 		
